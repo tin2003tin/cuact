@@ -12,7 +12,6 @@ const Navbar = () => {
         <SearhTab />
         <Icon icon="solar:calendar-bold" width={30} />
         <Icon icon="mdi:bell-ring" width={30} />
-        <Icon icon="iconamoon:profile-circle-fill" width={30} />
         <ProfileTab />
       </div>
     </nav>
