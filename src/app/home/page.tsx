@@ -78,6 +78,17 @@ const Home = () => {
             </div>
           ))}
         </Carousel>
+
+        {/* interest */}
+        <div className="flex justify-between font-bold">
+          <div>Your Interests</div>
+          <Link href={"/home"} className="flex items-center underline gap-2">
+            view all
+            <Icon icon="ep:right" />
+          </Link>
+        </div>
+        {/* list of card */}
+          
       </div>
     </div>
   );
