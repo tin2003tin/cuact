@@ -7,6 +7,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Image from "next/image";
 import Link from "next/link";
 
+
+
 const mockData = [
   {
     date: "fri. 12 Apr 2024",
@@ -46,13 +48,15 @@ const Calendar = () => {
   return (
     <div className="h-full max-w-[800px] mx-auto my-8">
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DateCalendar className="bg-stone-200 rounded-lg mb-8 w-full" />
+        <DateCalendar className="bg-stone-200 rounded-lg mb-8" />
       </LocalizationProvider>
+      {/* list of card */}
       <div className="flex flex-col items-center gap-4 w-full">
         {mockData.map((data) => (
           <div className="w-full">
             <div className="mb-2 font-bold">{data.date}</div>
-            <Link href={"/events/:id"} className="flex rounded-lg overflow-hidden bg-white gap-2 shadow-lg">
+            {/* card */}
+            <div className="flex rounded-lg overflow-hidden bg-white gap-2 shadow-lg hover:shadow-xl border">
               <Image
                 src={data.imageUrl}
                 width={200}
@@ -76,16 +80,19 @@ const Calendar = () => {
                     </div>
                   ))}
                 </div>
-                <Button className="bg-red-400 text-white font-bold text-md rounded-lg w-fit px-10 mt-4">
-                  view detail
-                </Button>
+                <Link href={"/events/:id"}>
+                  <Button className="bg-red-400 text-white font-bold text-md rounded-lg w-fit px-10 mt-4 ">
+                    view detail
+                  </Button>
+                </Link>
               </div>
-            </Link>
+            </div>
           </div>
         ))}
       </div>
     </div>
   );
 };
+
 
 export default Calendar;

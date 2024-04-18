@@ -6,7 +6,7 @@ import Link from "next/link";
 const Navbar = () => {
   return (
     <nav className="flex justify-between px-20 py-4 items-center bg-white shadow-lg">
-      <Link className="text-4xl font-bold text-pink-400" href={"/"}>
+      <Link className="text-4xl font-bold text-pink-400" href={"/home"}>
         CUact
       </Link>
       <div className="flex gap-8">
