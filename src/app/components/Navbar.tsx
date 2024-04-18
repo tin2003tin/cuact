@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react";
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-between px-20 py-4 items-center bg-white">
+    <nav className="flex justify-between px-20 py-4 items-center bg-white shadow-lg">
       <span className="text-4xl font-bold text-pink-400">CUact</span>
       <div className="flex gap-8">
         <Icon icon="solar:calendar-bold" width={30}/>
