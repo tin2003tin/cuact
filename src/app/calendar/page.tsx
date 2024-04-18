@@ -7,6 +7,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Image from "next/image";
 import Link from "next/link";
 
+import './style.css';
+
 
 
 const mockData = [
@@ -48,15 +50,15 @@ const Calendar = () => {
   return (
     <div className="h-full max-w-[800px] mx-auto my-8">
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DateCalendar className="bg-stone-200 rounded-lg mb-8" />
+        <DateCalendar className="bg-stone-200 rounded-lg mb-8 w-full" />
       </LocalizationProvider>
       {/* list of card */}
       <div className="flex flex-col items-center gap-4 w-full">
         {mockData.map((data) => (
           <div className="w-full">
-            <div className="mb-2 font-bold">{data.date}</div>
+            <div className="mb-2 font-bold text-xl">{data.date}</div>
             {/* card */}
-            <div className="flex rounded-lg overflow-hidden bg-white gap-2 shadow-lg hover:shadow-xl border">
+            <div className="flex rounded-2xl overflow-hidden bg-white gap-2 shadow-lg hover:shadow-xl">
               <Image
                 src={data.imageUrl}
                 width={200}
@@ -64,24 +66,24 @@ const Calendar = () => {
                 alt="event-image"
                 className="w-fit"
               />
-              <div className="p-4 flex flex-col gap-2">
+              <div className="p-8 flex flex-col gap-2 text-white bg-black bg-opacity-90 w-full">
                 <div className="font-bold text-red-400">{data.date}</div>
-                <div className="text-lg font-bold">{data.name}</div>
-                <div>{data.location}</div>
-                <div className="flex gap-2 items-center">
+                <div className="text-xl font-bold">{data.name}</div>
+                <div className="text-sm">{data.location}</div>
+                <div className="flex gap-2 items-center text-sm">
                   <Icon icon="fluent:people-community-48-filled" width={30} />
                   {data.joined} คน
                 </div>
                 <div className="flex gap-2">
                   #tag
                   {data.tags.map((tag) => (
-                    <div className="bg-green-200 px-4 rounded-full text-xs font-bold flex items-center">
+                    <div className="bg-green-400 px-4 rounded-full text-xs font-bold flex items-center">
                       {tag}
                     </div>
                   ))}
                 </div>
                 <Link href={"/events/:id"}>
-                  <Button className="bg-red-400 text-white font-bold text-md rounded-lg w-fit px-10 mt-4 ">
+                  <Button className="bg-red-400 text-white font-bold text-md rounded-lg w-fit px-10 mt-4 hover:bg-red-200" variant="contained">
                     view detail
                   </Button>
                 </Link>
