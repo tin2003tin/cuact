@@ -1,12 +1,18 @@
-export default function Navbar() {
-    return (
-        <nav className="sticky flex justify-between bg-white shadow-md p-4 items-center rounded-b-lg">
-            <a className="text-pink-400 font-black text-3xl" href="/">CUact</a>
-            <ul className="flex flex-row text-black gap-2">
-                <li><a href="/">Calendar</a></li>
-                <li><a href="/about">Notifications</a></li>
-                <li><a href="/contact">Profile</a></li>
-            </ul>
-        </nav>
-    );
-}
+"use client"
+
+import { Icon } from "@iconify/react";
+
+const Navbar = () => {
+  return (
+    <nav className="flex justify-between px-20 py-4 items-center bg-white">
+      <span className="text-4xl font-bold text-pink-400">CUact</span>
+      <div className="flex gap-8">
+        <Icon icon="solar:calendar-bold" width={30}/>
+        <Icon icon="mdi:bell-ring" width={30}/>
+        <Icon icon="iconamoon:profile-circle-fill" width={30}/>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;

@@ -1,5 +1,7 @@
-import Image from "next/image";
-
 export default function Home() {
-  return <div>Test naja eiei</div>;
+  return (
+    <div className="w-full h-screen">
+      test na ja eiei
+    </div>
+  );
 }
