@@ -43,8 +43,8 @@ const mockData = [
 
 const Home = () => {
   return (
-    <div className="h-full max-w-5xl mx-auto py-8">
-      <div className="flex justify-between font-bold">
+    <div className="h-full max-w-5xl mx-auto py-8 text-lg">
+      <div className="flex justify-between font-bold text-xl">
         <div>UPCOMING ACT...</div>
         <Link href={"/home"} className="flex items-center underline gap-2">
           view all

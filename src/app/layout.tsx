@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Kanit } from "next/font/google";
-import "./globals.css";
-import Navbar from "./components/Navbar";
+import "@/app/globals.css";
+import Navbar from "./(root)/components/Navbar";
 
 const inter = Kanit({
   weight: "400",
@@ -21,7 +21,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className + ' min-h-screen'}>
-        <Navbar />
         {children}
       </body>
     </html>
