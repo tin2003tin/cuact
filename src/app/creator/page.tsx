@@ -1,14 +1,16 @@
 "use client";
 
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Button, dividerClasses } from "@mui/material";
+import { Box, Button, Modal, Typography, dividerClasses } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 const tags = ["Tech", "Engineering", "Hackathon", "Knowledge"];
 
 const Calendar = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="flex">
       <section className="max-w-72 shadow-lg min-h-screen p-6 flex flex-col items-center gap-6">
@@ -36,7 +38,10 @@ const Calendar = () => {
           </div>
         </div>
         <div className="flex flex-col gap-4 mt-14">
-          <Button className="text-white bg-black hover:text-black flex gap-2 px-4 ">
+          <Button
+            className="text-white bg-black hover:text-black flex gap-2 px-4 "
+            onClick={() => setOpen(true)}
+          >
             <Icon
               icon="humbleicons:refresh"
               className="text-white"
@@ -48,6 +53,43 @@ const Calendar = () => {
             <Icon icon="ep:back" />
             Back to attendee
           </Button>
+          <Modal
+            open={open}
+            onClose={() => setOpen(false)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            className="flex justify-center items-center"
+          >
+            <Box className="bg-white rounded-2xl px-8 py-4 text-lg w-96 flex flex-col gap-4">
+              <div className="flex justify-between items-center font-bold">
+                Switch creator
+                  <Icon
+                    icon="material-symbols:close"
+                    onClick={() => setOpen(false)}
+                    width={30}
+                    className="cursor-pointer hover:bg-gray-200 rounded-full p-1 transistion transition-all"
+                  />
+              </div>
+              <div className="flex items-center gap-4">
+                <Image
+                  src={"/thinc.svg"}
+                  width={50}
+                  height={50}
+                  alt="creator-img"
+                />
+                Thinc.
+              </div>
+              <div className="flex items-center gap-4">
+                <Image
+                  src={"/thinc.svg"}
+                  width={50}
+                  height={50}
+                  alt="creator-img"
+                />
+                Thinc.
+              </div>
+            </Box>
+          </Modal>
         </div>
       </section>
       <section className="w-full p-8">
@@ -67,9 +109,7 @@ const Calendar = () => {
 
 const Header = ({ text }: { text: String }) => {
   return (
-    <div className="text-lg w-full font-semibold mt-8 uppercase">
-      {text}
-    </div>
+    <div className="text-lg w-full font-semibold mt-8 uppercase">{text}</div>
   );
 };
 
