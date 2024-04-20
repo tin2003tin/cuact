@@ -34,21 +34,32 @@ const BigCard = ({
 
   return (
     <div className="flex rounded-2xl overflow-hidden bg-white gap-2 shadow-lg hover:shadow-xl max-w-[800px]">
+      {/* event image */}
       <div className="relative w-full">
         <Image src={data.image} fill alt="event-image" />
       </div>
+
       <div className="p-8 flex flex-col gap-2 text-white bg-black bg-opacity-90 w-full">
+        {/* date */}
         <div className="font-bold text-red-400">
           {new Date(data.eventDate).toDateString()}
         </div>
+
+        {/* event name */}
         <div className="text-xl font-bold">{data.title}</div>
-        <div className="text-sm">{/* {data.content} */}</div>
+
+        {/* event location */}
+        <div className="text-sm">ตึก 100 ปีชั้น 3...</div>
+
+        {/* number of actee */}
         {isShowPaticipants && (
           <div className="flex gap-2 items-center text-sm">
             <Icon icon="fluent:people-community-48-filled" width={30} />
             {Math.random() * 10000} คน
           </div>
         )}
+
+        {/* event tag */}
         {isShowTags && (
           <div className="flex gap-2">
             #tag
@@ -57,6 +68,8 @@ const BigCard = ({
             </div>
           </div>
         )}
+
+        {/* view detail button */}
         <div className="flex gap-4 items-center mt-4">
           <Link href={"/events/:id"}>
             <Button
@@ -67,6 +80,7 @@ const BigCard = ({
             </Button>
           </Link>
 
+          {/* like button */}
           {isShowLike && (
             <button onClick={handleLike} className="hover:brightness-90">
               <Icon
@@ -76,10 +90,12 @@ const BigCard = ({
             </button>
           )}
         </div>
+
+        {/* acter profile */}
         {isShowActer && (
           <div className="flex justify-end">
             <div className="relative w-16 h-16 rounded-2xl overflow-hidden">
-              <Image src={data.image} fill alt="event-image" />
+              <Image src={data.image} fill alt="acter-image" />
             </div>
           </div>
         )}
