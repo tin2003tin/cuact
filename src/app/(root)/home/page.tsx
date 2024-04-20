@@ -2,10 +2,13 @@
 
 import UpCommingCard from "@/app/components/UpCommingCard";
 import { Data } from "@/app/types";
+import BigCard from "@/components/BigCard";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button, Paper } from "@mui/material";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 
 const mockData: Data[] = [
@@ -46,6 +49,12 @@ const mockData: Data[] = [
 
 
 const Home = () => {
+  const [data, setData ] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/api/event').then(res => setData(res.data));
+  }, [])
+
   return (
     <div className="h-full max-w-5xl mx-auto py-8 text-lg">
       <div className="flex justify-between font-bold text-xl">
@@ -58,8 +67,8 @@ const Home = () => {
 
       <div className="bg-stone-900 p-8 absolute left-0 right-0 mt-4">
         <Carousel className="w-1/2 mx-auto" animation="slide">
-          {mockData.map((data) => (
-            <UpCommingCard data={data} />
+          {data.map((event) => (
+            <BigCard data={event} isShowLike={false} isShowPaticipants={false} isShowTags={false} />
           ))}
         </Carousel>
 
