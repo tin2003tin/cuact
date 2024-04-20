@@ -51,7 +51,7 @@ const SearchBar = () => {
 const Tag = ({ text, isChoose }: { text: string; isChoose: Boolean }) => {
   return (
     <span
-      className={`px-4 ${
+      className={`flex gap-2 items-center px-4 ${
         isChoose ? "bg-green-300 text-white" : "bg-stone-400"
       } rounded-full`}
     >
