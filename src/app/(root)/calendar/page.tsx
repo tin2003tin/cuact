@@ -16,7 +16,7 @@ const Calendar = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/event")
+      .get(`${process.env.BACKEND_URL}/api/event`)
       .then((res) => setData(res.data));
   }, []);
 
@@ -27,7 +27,9 @@ const Calendar = () => {
       </LocalizationProvider>
       {data?.map((event) => (
         <>
-          <h2 className="my-4 text-lg">{new Date(event.eventDate).toDateString()}</h2>
+          <h2 className="my-4 text-lg">
+            {new Date(event.eventDate).toDateString()}
+          </h2>
           <BigCard
             data={event}
             isShowLike={false}

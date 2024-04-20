@@ -15,7 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/event")
+      .get(`${process.env.BACKEND_URL}/api/event`)
       .then((res) => setData(res.data));
   }, []);
 
