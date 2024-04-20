@@ -5,9 +5,14 @@ import "./style.css";
 
 import { DateCalendar, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import Image from "next/image";
+import Link from "next/link";
+
+import './style.css';
 import { Event } from "@prisma/client";
 import axios from "axios";
 import { useEffect, useState } from "react";
+
 
 const Calendar = () => {
   const [data, setData] = useState<Event[] | null>(null);
