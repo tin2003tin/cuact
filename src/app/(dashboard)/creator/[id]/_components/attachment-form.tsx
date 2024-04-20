@@ -89,14 +89,14 @@ export const AttachmentForm = ({
                 >
                   <File className="h-4 w-4 mr-2 flex-shrink-0" />
                   <p className="text-xs line-clamp-1">{attachment.name}</p>
-                  {deletingId === attachment.id && (
+                  {deletingId === String(attachment.id) && (
                     <div>
                       <Loader2 className="h-4 w-4 animate-spin" />
                     </div>
                   )}
-                  {deletingId !== attachment.id && (
+                  {deletingId !== String(attachment.id) && (
                     <button
-                      onClick={() => onDelete(attachment.id)}
+                      onClick={() => onDelete(String(attachment.id))}
                       className="ml-auto hover:opacity-75 transition"
                     >
                       <X className="h-4 w-4" />
