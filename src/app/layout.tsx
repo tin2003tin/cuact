@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Kanit } from "next/font/google";
 import "@/app/globals.css";
-import Navbar from "./(root)/components/Navbar";
+import Navbar from "./components/Navbar";
 
 const inter = Kanit({
   weight: "400",
