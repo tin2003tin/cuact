@@ -16,6 +16,8 @@ export const ProfileTab = () => {
   const [menuRight, setMenuRight] = useState<string>();
   const { isLoading, user } = useKindeBrowserClient();
 
+  console.log(user);
+
   const handleClick = () => {
     const buttonRect = buttonRef?.current?.getBoundingClientRect();
     const chevronRect = chevronRef?.current?.getBoundingClientRect();
