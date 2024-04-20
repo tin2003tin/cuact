@@ -1,1 +1,2 @@
-http://localhost:3000/
+Build : npx next build
+Run : npx next start

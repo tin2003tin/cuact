@@ -16,7 +16,7 @@ const Calendar = () => {
 
   useEffect(() => {
     axios
-      .get(`https://cuact.vercel.app/api/event`)
+      .get(`http://localhost:3000/api/event`)
       .then((res) => setData(res.data));
   }, []);
 

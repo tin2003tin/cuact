@@ -10,7 +10,7 @@ const ViewAll = ({ topic }: { topic: string }) => {
   const [data, setData] = useState<Event[] | null>([]);
   useEffect(() => {
     axios
-      .get(`https://cuact.vercel.app/api/event`)
+      .get(`http://localhost:3000/api/event`)
       .then((res) => setData(res.data));
   }, [topic]);
 
