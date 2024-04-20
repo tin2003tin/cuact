@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <div className="h-full text-lg">
       <SearchBar />
-      <Header text="UPCOMING ACT..." link="/home" />
+      <Header text="UPCOMING ACT..." link="/event" />
       <div className="bg-stone-900 p-8 w-full mt-4">
         <Carousel className="w-1/2 mx-auto z-0" animation="slide">
           {data?.map((event, id) => (
