@@ -1,8 +1,8 @@
-import EventCard from "../../components/EventCard";
+import EventCard from "@/components/EventCard";
 
 const search = () => {
   return (
-    <div>
+    <>
       <EventCard
         id={"???"}
         date={"Fri. 12 Apr 2024"}
@@ -12,7 +12,7 @@ const search = () => {
         hasButton={true}
         isJoined={false}
       />
-    </div>
+    </>
   );
 };
 
