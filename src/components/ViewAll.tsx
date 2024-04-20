@@ -27,7 +27,7 @@ const ViewAll = ({ topic }: { topic: string }) => {
           <Icon icon="mdi:eye-off" />
         </button>
       </div>
-      <div className="flex flex-wrap gap-4 justify-center">
+      <div className="flex flex-wrap gap-4 items-center">
         {data?.map((event) => (
           <EventCard data={event} hasButton={true} />
         ))}
