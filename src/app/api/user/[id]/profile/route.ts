@@ -17,6 +17,10 @@ export async function GET(
       where: {
         userId,
       },
+      include: {
+        interestingEvent: true,
+        tag: true,
+      },
     });
     if (!user) {
       return NextResponse.json(

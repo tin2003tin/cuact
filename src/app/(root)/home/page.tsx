@@ -11,11 +11,12 @@ import { Event } from "@prisma/client";
 import SearchBar from "@/components/SearchBar";
 
 const Home = () => {
-  const [data, setData] = useState<Event[] | null>([]);
+  console.log(process.env);
 
+  const [data, setData] = useState<Event[] | null>([]);
   useEffect(() => {
     axios
-      .get(`${process.env.BACKEND_URL}/api/event`)
+      .get(`http://localhost:3000/api/event`)
       .then((res) => setData(res.data));
   }, []);
 
