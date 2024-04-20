@@ -31,6 +31,7 @@ const Calendar = () => {
             isShowLike={false}
             isShowPaticipants={false}
             isShowTags
+            isShowActer={false}
           />
         </>
       ))}
