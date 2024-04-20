@@ -37,14 +37,11 @@ const PopUp = () => {
   const [isEdit, setIsedit] = useState(false);
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg max-w-[400px] border">
+    <div className="bg-white p-6 rounded-lg shadow-lg max-w-[400px] border text-lg">
       <div className="border rounded-lg p-4 mb-4">
-        <div
-          className="flex justify-between items-center border-b-2 mb-4"
-          onClick={() => setIsedit((prev) => !prev)}
-        >
+        <div className="flex justify-between items-center border-b-2 mb-4">
           <span># My Tag</span>
-          <Icon icon={`${isEdit ? "fluent-mdl2:check-mark" : "mdi:pencil"}`} />
+          <Icon icon={`${isEdit ? "fluent-mdl2:check-mark" : "mdi:pencil"}`} onClick={() => setIsedit((prev) => !prev)} />
         </div>
         <div className="flex flex-wrap gap-2 ">
           {tags.map((tag) => (
@@ -99,7 +96,7 @@ const PopUp = () => {
 
 const Tag = ({ text, isEdit }: { text: string; isEdit: Boolean }) => {
   return (
-    <div className="bg-green-400 px-4 rounded-full text-sm flex gap-2 items-center text-white">
+    <div className="bg-green-400 px-4 rounded-full text-base flex gap-2 items-center text-white">
       {text}
       {isEdit && <Icon icon="material-symbols:close" className="text-lg" />}
     </div>

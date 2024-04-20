@@ -61,7 +61,7 @@ export default Home;
 
 const Header = ({ text, link }: { text: string; link: string }) => {
   return (
-    <div className="flex justify-between items-center text-xl max-w-5xl mx-auto my-8">
+    <div className="flex justify-between items-center text-2xl max-w-5xl mx-auto mt-6">
       <div>{text}</div>
       <Link href={link} className="flex items-center underline gap-2">
         view all

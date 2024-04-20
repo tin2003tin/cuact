@@ -29,7 +29,7 @@ const Calendar = () => {
       </LocalizationProvider>
       {data?.map((event) => (
         <>
-          <h2 className="mt-8 text-lg">{new Date(event.eventDate).toDateString()}</h2>
+          <h2 className="my-4 text-lg">{new Date(event.eventDate).toDateString()}</h2>
           <BigCard
             data={event}
             isShowLike={false}
