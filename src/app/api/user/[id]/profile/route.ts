@@ -17,11 +17,6 @@ export async function GET(
       where: {
         userId,
       },
-      include: {
-        interestingEvent: {
-          where: {},
-        },
-      },
     });
     if (!user) {
       return NextResponse.json(
