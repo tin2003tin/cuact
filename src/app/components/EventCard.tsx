@@ -1,6 +1,7 @@
 "use client";
 
 import eventImage from "@/public/images/hackchula.png";
+import eventImage2 from "@/public/images/hackchula2.png";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
@@ -28,12 +29,10 @@ const EventCard = ({
   const [joinedState, setJoinedState] = useState(isJoined);
 
   const handleJoin = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
     setJoinedState((prev) => !prev);
   };
 
   const handleLike = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
     // if (liked) {
     // do something
     // } else {
@@ -48,11 +47,12 @@ const EventCard = ({
         hasButton ? "h-[370px]" : "h-[320px]"
       }`}
     >
-      <div className="flex items-center justify-center w-60 h-60">
+      <div className="flex items-center justify-center w-60 h-60 relative">
         <Image
-          src={eventImage}
+          fill
+          src={eventImage2}
           alt={eventName}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover rounded-t-2xl"
         />
       </div>
       <div className="px-2 py-2">
