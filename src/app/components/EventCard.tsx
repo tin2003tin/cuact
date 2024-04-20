@@ -42,10 +42,6 @@ const EventCard = ({
     setLiked((prev) => !prev);
   };
 
-  // `bg-yellow-500 w-60 rounded-2xl${
-  //   hasButton ? "h-[360px]"  : "h-[310px]"
-  // }`
-
   return (
     <div
       className={`bg-white w-60 rounded-2xl ${
