@@ -12,22 +12,24 @@ model Event {
   title     String   @db.VarChar(255)
   eventDate DateTime
   content   String?
-  tag       String[]
-  category  String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   formId    String   @unique
   published Boolean  @default(false)
+  image     String
 
   interestedProfile Profile[] @relation("interestEvent")
 
-  owner        User   @relation(fields: [userId], references: [id])
-  participants User[] @relation("participants")
-  userId       Int    @unique
+  owner        User         @relation(fields: [userId], references: [id])
+  participants User[]       @relation("participants")
+  userId       Int          @unique
+  attachments  Attachment[]
+  Category     Category     @relation(fields: [categoryId], references: [id])
+  categoryId   String
 }
 
 model Profile {
-  id               Int      @id @default(autoincrement())
+  id               Int        @id @default(autoincrement())
   bio              String?
   fullName         String
   department       String
@@ -36,10 +38,10 @@ model Profile {
   facebookContact  String?
   igContact        String?
   lineContact      String?
-  interestingEvent Event[]  @relation("interestEvent")
-  tag              String[]
-  user             User     @relation(fields: [userId], references: [id])
-  userId           Int      @unique
+  interestingEvent Event[]    @relation("interestEvent")
+  tag              Category[]
+  user             User       @relation(fields: [userId], references: [id])
+  userId           Int        @unique
 }
 
 model User {
@@ -51,4 +53,25 @@ model User {
   attendedEvents Event[] @relation("participants")
 
   Event Event?
+}
+
+model Attachment {
+  id    String @id @default(uuid())
+  name  String
+  url   String @db.Text
+  event Event  @relation(fields: [eventId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  eventId   Int
+
+  @@index([eventId])
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  courses   Event[]
+  Profile   Profile? @relation(fields: [profileId], references: [id])
+  profileId Int?
 }

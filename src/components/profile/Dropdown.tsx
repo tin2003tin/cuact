@@ -7,7 +7,6 @@ import {
   RegisterLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 
 export const ProfileTab = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
