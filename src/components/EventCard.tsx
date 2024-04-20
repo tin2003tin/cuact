@@ -16,12 +16,8 @@ const EventCard = ({
 }) => {
   const [liked, setLiked] = useState(false);
 
-  const handleLike = (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    // if (liked) {
-    // do something
-    // } else {
-    //  dosomething
-    // }
+  const handleLike = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     e.stopPropagation();
     setLiked((prev) => !prev);
   };

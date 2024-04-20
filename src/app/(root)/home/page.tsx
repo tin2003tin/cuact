@@ -32,6 +32,8 @@ const Home = () => {
               isShowPaticipants={false}
               isShowTags={false}
               isShowActer={false}
+              isShowViewDetail={true}
+              isShowJoinButton={false}
               key={id}
             />
           ))}
@@ -46,7 +48,10 @@ const Home = () => {
           ))}
         </div>
         {/* list of card */}
-        <Header text="Recommended (From your interest topics)" link="/home" />
+
+        <div className="flex justify-between items-center text-2xl max-w-5xl mx-auto mt-6">
+          <div>Recommended (from your interested topic)</div>
+        </div>
         <div className="overflow-auto flex gap-6 py-4">
           {data?.map((event, id) => (
             <EventCard data={event} hasButton={false} key={id} />
