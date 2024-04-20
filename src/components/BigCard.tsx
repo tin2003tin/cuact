@@ -14,7 +14,7 @@ const BigCard = ({
   isShowTags,
   isShowActer,
   isShowViewDetail,
-  isShowJoinButton
+  isShowJoinButton,
 }: {
   data: Event;
   isShowLike: Boolean;
@@ -22,7 +22,7 @@ const BigCard = ({
   isShowTags: Boolean;
   isShowActer: Boolean;
   isShowViewDetail: Boolean;
-  isShowJoinButton:Boolean;
+  isShowJoinButton: Boolean;
 }) => {
   //console.log(data);
   const [liked, setLiked] = useState(false);
@@ -67,7 +67,7 @@ const BigCard = ({
         {isShowPaticipants && (
           <div className="flex gap-2 items-center text-sm">
             <Icon icon="fluent:people-community-48-filled" width={30} />
-            {Math.random() * 10000} คน
+            {Math.round(Math.random() * 100)} คน
           </div>
         )}
 
@@ -75,9 +75,11 @@ const BigCard = ({
         {isShowTags && (
           <div className="flex gap-2">
             #tag
-            <div className="bg-green-400 px-4 rounded-full text-xs font-bold flex items-center">
-              Tech
-            </div>
+            {(data as any).Category.map((tag: {id: number, name: string}) => (
+              <div className="bg-green-400 px-4 rounded-full text-xs font-bold flex items-center" key={tag["id"]}>
+                {tag.name}
+              </div>
+            ))}
           </div>
         )}
 

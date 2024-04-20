@@ -12,10 +12,18 @@ import SearchBar from "@/components/SearchBar";
 
 const Home = () => {
   const [data, setData] = useState<Event[] | null>([]);
+  const [user, setUser] = useState();
+  console.log(user);
 
   useEffect(() => {
     axios
-      .get(`${process.env.BACKEND_URL}/api/event`)
+      .get(`http://localhost:3000/api/user/2/profile`)
+      .then((res) => setUser(res.data));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/event`)
       .then((res) => setData(res.data));
   }, []);
 
