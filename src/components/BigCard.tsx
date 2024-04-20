@@ -36,7 +36,7 @@ const BigCard = ({
     <div className="flex rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-xl max-w-[800px] h-[250px]">
       {/* event image */}
       <div className="relative w-full">
-        <Image src={data.image} fill alt="event-image" objectFit="cover"/>
+        <Image src={data.image} fill alt="event-image" className="object-cover"/>
       </div>
 
       <div className="p-8 flex flex-col gap-2 text-white bg-black bg-opacity-90 w-full">

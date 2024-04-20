@@ -24,7 +24,7 @@ const Home = () => {
       <SearchBar />
       <Header text="UPCOMING ACT..." link="/home" />
       <div className="bg-stone-900 p-8 w-full mt-4">
-        <Carousel className="w-1/2 mx-auto" animation="slide">
+        <Carousel className="w-1/2 mx-auto z-0" animation="slide">
           {data?.map((event, id) => (
             <BigCard
               data={event}

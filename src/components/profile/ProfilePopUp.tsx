@@ -1,0 +1,87 @@
+import React from "react";
+import { Unstable_Popup as BasePopup } from "@mui/base/Unstable_Popup";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import {
+  LoginLink,
+  LogoutLink,
+  RegisterLink,
+  useKindeBrowserClient,
+} from "@kinde-oss/kinde-auth-nextjs";
+
+const tags = ["Tech", "Tech", "Tech", "Tech", "Tech", "Tech"];
+
+const ProfilePopUp = () => {
+  const [anchor, setAnchor] = React.useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchor(anchor ? null : event.currentTarget);
+  };
+
+  const open = Boolean(anchor);
+  const id = open ? "simple-popper" : undefined;
+  const { isLoading, user } = useKindeBrowserClient();
+
+  return (
+    <div>
+      <div aria-describedby={id} onClick={handleClick}>
+        <Icon icon="gg:profile" width={30} />
+      </div>
+      <BasePopup id={id} open={open} anchor={anchor}>
+        <div className="bg-white p-6 rounded-lg shadow-lg max-w-[350px] ">
+          <div className="border rounded-lg p-4 mb-4">
+            <div className="flex justify-between items-center border-b-2 mb-4">
+              <span># My Tag</span>
+              <Icon icon="mdi:pencil" />
+            </div>
+            <div className="flex flex-wrap gap-2 ">
+              {tags.map((tag) => (
+                <Tag text={tag} />
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            {user && <div className="flex items-center gap-2">
+              <Icon icon="iconamoon:profile-fill" />
+              Profile setting
+            </div>}
+            {user &&<div className="flex items-center gap-2">
+              <Icon icon="octicon:arrow-switch-16" />
+              Switch to creator
+            </div>}
+            {!user && (
+              <>
+                <LoginLink postLoginRedirectURL="" className="list flex gap-2 item-center">
+                  <Icon icon={"uil:signin"}></Icon>Sign In
+                </LoginLink>
+              </>
+            )}
+            {!user && (
+              <>
+                <RegisterLink postLoginRedirectURL="/" className="list flex gap-2 item-center">
+                  <Icon icon={"mdi:register"}></Icon>Sign Up
+                </RegisterLink>
+              </>
+            )}
+            {user && (
+              <>
+                <LogoutLink className="list flex gap-2 item-center">
+                  <Icon icon={"uil:signin"}></Icon>Log Out
+                </LogoutLink>
+              </>
+            )}
+          </div>
+        </div>
+      </BasePopup>
+    </div>
+  );
+};
+
+const Tag = ({ text }: { text: string }) => {
+  return (
+    <div className="bg-green-400 px-4 rounded-full text-sm flex items-center text-white">
+      {text}
+    </div>
+  );
+};
+
+export default ProfilePopUp;

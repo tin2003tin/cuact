@@ -52,7 +52,7 @@ const Tag = ({ text, isChoose }: { text: string; isChoose: Boolean }) => {
   return (
     <span
       className={`flex gap-2 items-center px-4 ${
-        isChoose ? "bg-green-300 text-white" : "bg-stone-400"
+        isChoose ? "bg-green-400 text-white" : "bg-stone-400"
       } rounded-full`}
     >
       {isChoose && <Icon icon="fluent-mdl2:check-mark" /> }

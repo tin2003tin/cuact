@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import { SearhTab } from "./search/Dropdown";
 import { ProfileTab } from "./profile/Dropdown";
 import Link from "next/link";
+import ProfilePopUp from "./profile/ProfilePopUp";
 
 const Navbar = () => {
   return (
@@ -16,7 +17,8 @@ const Navbar = () => {
           <Link href={'/calendar'}>
             <Icon icon="solar:calendar-bold" width={30} />
           </Link>
-          <ProfileTab />
+          {/* <ProfileTab /> */}
+          <ProfilePopUp />
         </div>
       </nav>
     </div>
