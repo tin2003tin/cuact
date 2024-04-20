@@ -4,7 +4,11 @@ import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
 
 export async function GET() {
-  const events = await prisma.event.findMany();
+  const events = await prisma.event.findMany({
+    include: {
+      Category: true,
+    },
+  });
   return NextResponse.json(events);
 }
 

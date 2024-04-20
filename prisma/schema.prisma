@@ -8,17 +8,17 @@ datasource db {
 }
 
 model Event {
-  id          Int      @id @default(autoincrement())
-  name        String   @db.VarChar(255)
-  title       String?   @db.VarChar(255)
-  eventDate   DateTime
-  content     String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  formId      String   @unique
-  published   Boolean  @default(false)
-  image       String
-  location    String
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  title     String?  @db.VarChar(255)
+  eventDate DateTime
+  content   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  formId    String   @unique
+  published Boolean  @default(false)
+  image     String
+  location  String
 
   interestedProfile Profile[] @relation("interestEvent")
 
@@ -70,9 +70,8 @@ model Attachment {
 }
 
 model Category {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  events    Event[]
-  Profile   Profile? @relation(fields: [profileId], references: [id])
-  profileId Int?
+  id      Int       @id @default(autoincrement())
+  name    String    @unique
+  events  Event[]
+  Profile Profile[]
 }
