@@ -1,89 +1,80 @@
 "use client";
 
-import UpCommingCard from "@/app/components/UpCommingCard";
-import { Data } from "@/app/types";
 import BigCard from "@/components/BigCard";
+import EventCard from "@/components/EventCard";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Button, Paper } from "@mui/material";
 import axios from "axios";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
-
-const mockData: Data[] = [
-  {
-    date: "fri. 12 Apr 2024",
-    name: "Hack Chula",
-    location: "ตึก... คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
-    joined: 6969,
-    imageUrl: "/hack-chula.svg",
-    tags: ["Tech", "Competition", "Hackathon"],
-  },
-  {
-    date: "fri. 12 Apr 2024",
-    name: "Hack Chula",
-    location: "ตึก... คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
-    joined: 6969,
-    imageUrl: "/hack-chula.svg",
-    tags: ["Tech", "Competition", "Hackathon"],
-  },
-  {
-    date: "fri. 12 Apr 2024",
-    name: "Hack Chula",
-    location: "ตึก... คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
-    joined: 6969,
-    imageUrl: "/hack-chula.svg",
-    tags: ["Tech", "Competition", "Hackathon"],
-  },
-  {
-    date: "fri. 12 Apr 2024",
-    name: "Hack Chula",
-    location: "ตึก... คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
-    joined: 6969,
-    imageUrl: "/hack-chula.svg",
-    tags: ["Tech", "Competition", "Hackathon"],
-  },
-];
-
-
+import { Event } from "@prisma/client";
 
 const Home = () => {
-  const [data, setData ] = useState([]);
+  const [data, setData] = useState<Event[] | null>([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/event').then(res => setData(res.data));
-  }, [])
+    axios
+      .get("http://localhost:3000/api/event")
+      .then((res) => setData(res.data));
+  }, []);
 
   return (
-    <div className="h-full max-w-5xl mx-auto py-8 text-lg">
-      <div className="flex justify-between font-bold text-xl">
-        <div>UPCOMING ACT...</div>
-        <Link href={"/home"} className="flex items-center underline gap-2">
-          view all
-          <Icon icon="ep:right" />
-        </Link>
-      </div>
-
-      <div className="bg-stone-900 p-8 absolute left-0 right-0 mt-4">
+    <div className="h-full text-lg">
+      <Header text="UPCOMING ACT..." link="/home" />
+      <div className="bg-stone-900 p-8 w-full mt-4">
         <Carousel className="w-1/2 mx-auto" animation="slide">
-          {data.map((event) => (
-            <BigCard data={event} isShowLike={false} isShowPaticipants={false} isShowTags={false} />
+          {data?.map((event) => (
+            <BigCard
+              data={event}
+              isShowLike={false}
+              isShowPaticipants={false}
+              isShowTags={false}
+            />
           ))}
         </Carousel>
-
+      </div>
+      <div className="max-w-5xl mx-auto">
         {/* interest */}
-        <div className="flex justify-between font-bold">
-          <div>Your Interests</div>
-          <Link href={"/home"} className="flex items-center underline gap-2">
-            view all
-            <Icon icon="ep:right" />
-          </Link>
-        </div>
+        <Header text="Your Interests" link="/home" />
+        {data?.map((event) => (
+          <EventCard
+            id={event.id.toString()}
+            date={new Date(event.eventDate).toDateString()}
+            eventName={event.title}
+            location={"ตึก 100 ปี ชั้น 3...."}
+            isLiked={Math.random() * 100 > 50}
+            hasButton
+            isJoined={false}
+          />
+        ))}
         {/* list of card */}
+        <Header text="Recommended (From your interest topics)" link="/home" />
+        {data?.map((event) => (
+          <EventCard
+            id={event.id.toString()}
+            date={new Date(event.eventDate).toDateString()}
+            eventName={event.title}
+            location={"ตึก 100 ปี ชั้น 3...."}
+            isLiked={Math.random() * 100 > 50}
+            hasButton
+            isJoined={false}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
 export default Home;
+
+const Header = ({ text, link }: { text: string; link: string }) => {
+  return (
+    <div className="flex justify-between items-center text-xl max-w-5xl mx-auto mt-8">
+      <div>{text}</div>
+      <Link href={link} className="flex items-center underline gap-2">
+        view all
+        <Icon icon="ep:right" />
+      </Link>
+    </div>
+  );
+};

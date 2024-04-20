@@ -44,7 +44,7 @@ const BigCard = ({
         {isShowPaticipants && (
           <div className="flex gap-2 items-center text-sm">
             <Icon icon="fluent:people-community-48-filled" width={30} />
-            6969 คน
+            {Math.random() * 10000} คน
           </div>
         )}
         {isShowTags && (
