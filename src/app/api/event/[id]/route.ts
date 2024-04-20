@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
@@ -8,14 +8,21 @@ const prisma = new PrismaClient();
  * @params params { id: String } ;
  */
 export async function GET(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
     const eventId = Number(params.id);
+
     const event = await prisma.event.findUnique({
       where: {
         id: eventId,
+      },
+      include: {
+        Category: true,
+        attachments: true,
+        owner: true,
+        participants: true,
       },
     });
     if (!event) {
@@ -35,6 +42,7 @@ export async function PATCH(
     const userId = 1;
     const { id } = params;
     const values = await req.json();
+    console.log(values);
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
@@ -48,7 +56,6 @@ export async function PATCH(
         ...values,
       },
     });
-
     return NextResponse.json(event);
   } catch (error) {
     console.log("[COURSE_ID]", error);
