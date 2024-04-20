@@ -4,7 +4,7 @@ import "@/app/globals.css";
 
 const inter = Kanit({
   weight: "400",
-  subsets: ["latin"]
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -19,9 +19,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + ' min-h-screen'}>
-        {children}
-      </body>
+      <body className={inter.className + " min-h-screen"}>{children}</body>
     </html>
   );
 }
