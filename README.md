@@ -1,1 +1,1 @@
-https://cuact.vercel.app/
+http://localhost:3000/

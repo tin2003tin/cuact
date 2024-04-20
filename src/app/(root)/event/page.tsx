@@ -22,7 +22,7 @@ const eventsPage = () => {
       <div className="grid grid-cols-1  md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {events?.map((event: Event) => (
           <div className="col-span-1 flex justify-center">
-            <EventCard key={event.id} data={event} hasButton={false} />
+            <EventCard key={event.id} data={event} hasButton={true} />
           </div>
         ))}
       </div>

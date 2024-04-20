@@ -1,27 +1,17 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import React, { useState } from "react";
-
-const tags = [
-  {
-    name: "tech",
-    isChoose: Math.random() * 10 < 5,
-  },
-  {
-    name: "tech",
-    isChoose: Math.random() * 10 < 5,
-  },
-  {
-    name: "tech",
-    isChoose: Math.random() * 10 < 5,
-  },
-  {
-    name: "tech",
-    isChoose: Math.random() * 10 < 5,
-  },
-];
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const SearchBar = () => {
   const [isAddTag, setIsAddTag] = useState(false);
+  const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
+  const [selectedTags, setSelectTags] = useState<string[]>([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/category")
+      .then((res) => setTags(res.data));
+  }, []);
 
   return (
     <div className="w-full max-w-5xl mx-auto rounded-md">
@@ -39,8 +29,14 @@ const SearchBar = () => {
       </div>
       {isAddTag && (
         <div className="flex flex-wrap gap-2 p-4 border border-stone-400">
-          {tags.map((tag) => (
-            <Tag text={tag.name} isChoose={tag.isChoose} />
+          {tags?.map((tag) => (
+            <Tag
+              data={tag}
+              isChoose={
+                selectedTags.find((tagId) => tagId == tag.name) != undefined
+              }
+              setSelectTags={setSelectTags}
+            />
           ))}
         </div>
       )}
@@ -48,15 +44,31 @@ const SearchBar = () => {
   );
 };
 
-const Tag = ({ text, isChoose }: { text: string; isChoose: Boolean }) => {
+const Tag = ({
+  data,
+  isChoose,
+  setSelectTags,
+}: {
+  data: { id: number; name: string };
+  isChoose: Boolean;
+  setSelectTags: React.Dispatch<React.SetStateAction<string[]>>;
+}) => {
   return (
     <span
       className={`flex gap-2 items-center px-4 ${
         isChoose ? "bg-green-400 text-white" : "bg-stone-400"
-      } rounded-full`}
+      } rounded-full cursor-pointer`}
+      onClick={() =>
+        setSelectTags((prev) => {
+          if (isChoose) {
+            return prev.filter((tag) => tag != data.name);
+          }
+          return [...prev, data.name];
+        })
+      }
     >
-      {isChoose && <Icon icon="fluent-mdl2:check-mark" /> }
-      {text}
+      {isChoose && <Icon icon="fluent-mdl2:check-mark" />}
+      {data.name}
     </span>
   );
 };

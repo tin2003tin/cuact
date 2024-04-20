@@ -11,9 +11,22 @@ import { Event } from "@prisma/client";
 import SearchBar from "@/components/SearchBar";
 
 const Home = () => {
-  console.log(process.env);
-
   const [data, setData] = useState<Event[] | null>([]);
+  const [interestEvent, setInterestEvent] = useState<Event[] | null>();
+  const [tagEvent, setTagEvent] = useState<Event[] | null>();
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/user/2/event/tag`)
+      .then((res) => setTagEvent(res.data));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/user/2/event/interesting`)
+      .then((res) => setInterestEvent(res.data));
+  }, []);
+
   useEffect(() => {
     axios
       .get(`http://localhost:3000/api/event`)
@@ -44,17 +57,17 @@ const Home = () => {
         {/* interest */}
         <Header text="Your Interests" link="/interest" />
         <div className="overflow-auto flex gap-6  py-4">
-          {data?.map((event, id) => (
+          {interestEvent?.map((event, id) => (
             <EventCard data={event} hasButton={true} key={id} />
           ))}
         </div>
-        {/* list of card */}
 
+        {/* tag event */}
         <div className="flex justify-between items-center text-2xl max-w-5xl mx-auto mt-6">
           <div>Recommended (from your interested topic)</div>
         </div>
         <div className="overflow-auto flex gap-6 py-4">
-          {data?.map((event, id) => (
+          {tagEvent?.map((event, id) => (
             <EventCard data={event} hasButton={true} key={id} />
           ))}
         </div>
