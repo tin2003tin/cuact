@@ -8,11 +8,10 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Image from "next/image";
 import Link from "next/link";
 
-import './style.css';
+import "./style.css";
 import { Event } from "@prisma/client";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 
 const Calendar = () => {
   const [data, setData] = useState<Event[] | null>(null);
@@ -30,7 +29,7 @@ const Calendar = () => {
       </LocalizationProvider>
       {data?.map((event) => (
         <>
-          <h2>{(new Date(event.eventDate)).toDateString()}</h2>
+          <h2 className="mt-8 text-lg">{new Date(event.eventDate).toDateString()}</h2>
           <BigCard
             data={event}
             isShowLike={false}

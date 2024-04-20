@@ -71,7 +71,7 @@ const BigCard = ({
 
         {/* view detail button */}
         <div className="flex gap-4 items-center mt-4">
-          <Link href={"/events/:id"}>
+          <Link href={`/events/${data.id}`}>
             <Button
               className="bg-red-400 text-white font-bold text-md rounded-lg w-fit px-10  hover:bg-red-200"
               variant="contained"

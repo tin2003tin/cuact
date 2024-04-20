@@ -39,32 +39,16 @@ const Home = () => {
       <div className="max-w-5xl mx-auto">
         {/* interest */}
         <Header text="Your Interests" link="/home" />
-        <div className="overflow-auto flex gap-6">
+        <div className="overflow-auto flex gap-6  py-4">
           {data?.map((event) => (
-            <EventCard
-              id={event.id.toString()}
-              date={new Date(event.eventDate).toDateString()}
-              eventName={event.title as string}
-              location={"ตึก 100 ปี ชั้น 3...."}
-              isLiked={Math.random() * 100 > 50}
-              hasButton
-              isJoined={false}
-            />
+            <EventCard data={event} hasButton={false} />
           ))}
         </div>
         {/* list of card */}
         <Header text="Recommended (From your interest topics)" link="/home" />
-        <div className="overflow-auto flex gap-6">
+        <div className="overflow-auto flex gap-6 py-4">
           {data?.map((event) => (
-            <EventCard
-              id={event.id.toString()}
-              date={new Date(event.eventDate).toDateString()}
-              eventName={event.title as string}
-              location={"ตึก 100 ปี ชั้น 3...."}
-              isLiked={Math.random() * 100 > 50}
-              hasButton
-              isJoined={false}
-            />
+            <EventCard data={event} hasButton={false} />
           ))}
         </div>
       </div>

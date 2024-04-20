@@ -1,38 +1,22 @@
 "use client";
 
-import eventImage from "@/public/images/hackchula.png";
-
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
-
-type EventCardProps = {
-  id: string;
-  date: string;
-  eventName: string;
-  location: string;
-  isLiked: boolean;
-  hasButton: boolean;
-  isJoined: boolean;
-};
+import Link from "next/link";
+import { Button } from "@mui/material";
+import { Event } from "@prisma/client";
 
 const EventCard = ({
-  id,
-  date,
-  eventName,
-  location,
-  isLiked,
+  data,
   hasButton,
-  isJoined,
-}: EventCardProps) => {
-  const [liked, setLiked] = useState(isLiked);
-  const [joinedState, setJoinedState] = useState(isJoined);
+}: {
+  data: Event;
+  hasButton: Boolean;
+}) => {
+  const [liked, setLiked] = useState(false);
 
-  const handleJoin = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setJoinedState((prev) => !prev);
-  };
-
-  const handleLike = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLike = () => {
     // if (liked) {
     // do something
     // } else {
@@ -43,21 +27,23 @@ const EventCard = ({
 
   return (
     <div
-      className={`bg-white w-60 rounded-2xl ${
+      className={`bg-white w-60 rounded-2xl border shadow-md hover:shadow-lg ${
         hasButton ? "h-[370px]" : "h-[320px]"
       }`}
     >
       <div className="flex items-center justify-center w-60 h-60 relative">
         <Image
           fill
-          src={eventImage}
-          alt={eventName}
+          src={data.image}
+          alt={data.name}
           className="w-full h-full object-cover rounded-t-2xl"
         />
       </div>
       <div className="px-2 py-2">
         <div className="flex flex-fow justify-between h-5">
-          <div className="text-red-400 text-sm font-semibold">{date}</div>
+          <div className="text-red-400 text-sm font-semibold">
+            {new Date(data.eventDate).toDateString()}
+          </div>
           <div>
             {liked ? (
               <button onClick={handleLike} className="hover:brightness-90">
@@ -76,25 +62,17 @@ const EventCard = ({
             )}
           </div>
         </div>
-        <div className="text-black text-sm font-semibold">{eventName}</div>
-        <div className="text-black text-xs font-semibold">{location}</div>
+        <div className="text-black text-sm font-semibold">{data.name}</div>
+        <div className="text-black text-xs font-semibold">{data.location}</div>
       </div>
-      {hasButton ? (
-        <div className="flex justify-center">
-          <button
-            onClick={handleJoin}
-            className={`rounded-md w-52 h-11 shadow-xl ${
-              joinedState ? "bg-zinc-400" : "bg-red-400"
-            }`}
-          >
-            <div className="text-xl font-semibold	text-white">
-              {joinedState ? "เข้าร่วมแล้ว" : "เข้าร่วมเลย !"}
-            </div>
-          </button>
-        </div>
-      ) : (
-        <></>
-      )}
+      {hasButton && <Link href={"/events/:id"}>
+        <Button
+          className="bg-red-400 text-white font-bold text-md rounded-lg w-fit px-10  hover:bg-red-200"
+          variant="contained"
+        >
+          เข้าร่วมเลย
+        </Button>
+      </Link>}
     </div>
   );
 };
