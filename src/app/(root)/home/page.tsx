@@ -33,6 +33,7 @@ const Home = () => {
               isShowTags={false}
               isShowActer={false}
               isShowViewDetail={true}
+              isShowJoinButton={true}
               key={id}
             />
           ))}
