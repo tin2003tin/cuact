@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
+import { Inter, Kanit } from "next/font/google";
+import "@/app/globals.css";
+import Navbar from "./components/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Kanit({
+  weight: "400",
+  subsets: ["latin"]
+});
 
 export const metadata: Metadata = {
   title: "CUact",
@@ -17,8 +20,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
+      <body className={inter.className + ' min-h-screen'}>
         {children}
       </body>
     </html>

@@ -1,0 +1,9 @@
+/* .css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root, .css-1ayjnp4-MuiPickersDay-root, .css-33p0if-MuiButtonBase-root-MuiPickersDay-root{
+    width: 80px;
+} */
+
+.MuiPickersDay-root,
+.MuiDayCalendar-weekDayLabel {
+  width: 80px;
+  border-radius: 20px;
+}
