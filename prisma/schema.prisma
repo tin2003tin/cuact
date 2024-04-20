@@ -8,15 +8,17 @@ datasource db {
 }
 
 model Event {
-  id        Int      @id @default(autoincrement())
-  title     String   @db.VarChar(255)
-  eventDate DateTime
-  content   String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  formId    String   @unique
-  published Boolean  @default(false)
-  image     String
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(255)
+  title       String?   @db.VarChar(255)
+  eventDate   DateTime
+  content     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  formId      String   @unique
+  published   Boolean  @default(false)
+  image       String
+  location    String
 
   interestedProfile Profile[] @relation("interestEvent")
 
@@ -24,8 +26,7 @@ model Event {
   participants User[]       @relation("participants")
   userId       Int          @unique
   attachments  Attachment[]
-  Category     Category     @relation(fields: [categoryId], references: [id])
-  categoryId   String
+  Category     Category[]
 }
 
 model Profile {
@@ -56,7 +57,7 @@ model User {
 }
 
 model Attachment {
-  id    String @id @default(uuid())
+  id    Int    @id @default(autoincrement())
   name  String
   url   String @db.Text
   event Event  @relation(fields: [eventId], references: [id])
@@ -69,9 +70,9 @@ model Attachment {
 }
 
 model Category {
-  id        String   @id @default(uuid())
+  id        Int      @id @default(autoincrement())
   name      String   @unique
-  courses   Event[]
+  events    Event[]
   Profile   Profile? @relation(fields: [profileId], references: [id])
   profileId Int?
 }

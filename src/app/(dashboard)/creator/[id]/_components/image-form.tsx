@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 
 interface ImageFormProps {
   initialData: Event;
-  courseId: string;
+  id: string;
 }
 
 const formSchema = z.object({
@@ -23,7 +23,7 @@ const formSchema = z.object({
   }),
 });
 
-export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
+export const ImageForm = ({ initialData, id }: ImageFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -32,7 +32,7 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(`/api/courses/${courseId}`, values);
+      await axios.patch(`/api/event/${id}`, values);
       toast.success("Course updated");
       toggleEdit();
       router.refresh();

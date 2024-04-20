@@ -12,7 +12,8 @@ import { IconBadge } from "@/components/icon-badge";
 import { Banner } from "@/components/banner";
 
 import { TitleForm } from "./_components/title-form";
-import { DescriptionForm } from "./_components/description-form";
+import { NameForm } from "./_components/name-form";
+import { ContentForm } from "./_components/content-form";
 import { ImageForm } from "./_components/image-form";
 import { CategoryForm } from "./_components/category-form";
 // import { PriceForm } from "./_components/price-form";
@@ -27,7 +28,7 @@ const CourseIdPage = async ({ params }: { params: { id: string } }) => {
   //   return redirect("/");
   // }
 
-  const course = await db.event.findUnique({
+  const event = await db.event.findUnique({
     where: {
       id: Number(params.id),
     },
@@ -46,11 +47,17 @@ const CourseIdPage = async ({ params }: { params: { id: string } }) => {
     },
   });
 
-  if (!course) {
+  if (!event) {
     return redirect("/");
   }
 
-  const requiredFields = [course.title, course.content, course.eventDate];
+  const requiredFields = [
+    event.eventDate,
+    event.image,
+    event.location,
+    event.name,
+    event,
+  ];
 
   const totalFields = requiredFields.length;
   const completedFields = requiredFields.filter(Boolean).length;
@@ -61,7 +68,7 @@ const CourseIdPage = async ({ params }: { params: { id: string } }) => {
 
   return (
     <>
-      {!course.published && (
+      {!event.published && (
         <Banner label="This course is unpublished. It will not be visible to the students." />
       )}
       <div className="p-6">
@@ -75,7 +82,7 @@ const CourseIdPage = async ({ params }: { params: { id: string } }) => {
           <Actions
             disabled={!isComplete}
             courseId={params.id}
-            isPublished={course.published}
+            isPublished={event.published}
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
@@ -84,15 +91,13 @@ const CourseIdPage = async ({ params }: { params: { id: string } }) => {
               <IconBadge icon={LayoutDashboard} />
               <h2 className="text-xl">Customize your event</h2>
             </div>
-            <TitleForm initialData={course} id={String(course.id)} />
-            <DescriptionForm
-              initialData={course}
-              courseId={String(course.id)}
-            />
-            <ImageForm initialData={course} courseId={String(course.id)} />
+            <NameForm initialData={event} id={String(event.id)} />
+            <TitleForm initialData={event} id={String(event.id)} />
+            <ContentForm initialData={event} id={String(event.id)} />
+            <ImageForm initialData={event} id={String(event.id)} />
             <CategoryForm
-              initialData={course}
-              id={String(course.id)}
+              initialData={event}
+              id={String(event.id)}
               options={categories.map((category: { name: any; id: any }) => ({
                 label: category.name,
                 value: category.id,
@@ -119,10 +124,7 @@ const CourseIdPage = async ({ params }: { params: { id: string } }) => {
                 <IconBadge icon={File} />
                 <h2 className="text-xl">Resources & Attachments</h2>
               </div>
-              <AttachmentForm
-                initialData={course}
-                courseId={String(course.id)}
-              />
+              <AttachmentForm initialData={event} courseId={String(event.id)} />
             </div>
           </div>
         </div>

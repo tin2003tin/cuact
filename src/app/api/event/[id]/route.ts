@@ -26,3 +26,32 @@ export async function GET(
     return NextResponse.json({ message: error }, { status: 400 });
   }
 }
+
+export async function PATCH(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const userId = 1;
+    const { id } = params;
+    const values = await req.json();
+    if (!userId) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    const event = await prisma.event.update({
+      where: {
+        id: Number(id),
+        userId,
+      },
+      data: {
+        ...values,
+      },
+    });
+
+    return NextResponse.json(event);
+  } catch (error) {
+    console.log("[COURSE_ID]", error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+}

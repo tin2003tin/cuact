@@ -1,6 +1,6 @@
 "use client";
 
-import UpCommingCard from "@/app/components/UpCommingCard";
+import UpCommingCard from "@/components/UpCommingCard";
 import { Data } from "@/app/types";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button, Paper } from "@mui/material";
@@ -42,8 +42,6 @@ const mockData: Data[] = [
     tags: ["Tech", "Competition", "Hackathon"],
   },
 ];
-
-
 
 const Home = () => {
   return (

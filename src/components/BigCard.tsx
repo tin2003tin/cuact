@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button } from "@mui/material";
@@ -41,7 +41,7 @@ const mockData = [
   },
 ];
 
-const BigCard = ({ data }: {data}) => {
+const BigCard = () => {
   return (
     <div>
       {mockData.map((data) => (

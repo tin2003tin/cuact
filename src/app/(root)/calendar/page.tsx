@@ -7,10 +7,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Image from "next/image";
 import Link from "next/link";
 
-import './style.css';
-import ProfilePopUp from "@/app/components/ProfilePopUp";
-
-
+import "./style.css";
+import ProfilePopUp from "@/components/ProfilePopUp";
 
 const mockData = [
   {
@@ -84,7 +82,10 @@ const Calendar = () => {
                   ))}
                 </div>
                 <Link href={"/events/:id"}>
-                  <Button className="bg-red-400 text-white font-bold text-md rounded-lg w-fit px-10 mt-4 hover:bg-red-200" variant="contained">
+                  <Button
+                    className="bg-red-400 text-white font-bold text-md rounded-lg w-fit px-10 mt-4 hover:bg-red-200"
+                    variant="contained"
+                  >
                     view detail
                   </Button>
                 </Link>
@@ -96,6 +97,5 @@ const Calendar = () => {
     </div>
   );
 };
-
 
 export default Calendar;
