@@ -2,88 +2,104 @@
 
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button } from "@mui/material";
+import { Event } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { use, useState } from "react";
 
-const mockData = [
-  {
-    date: "fri. 12 Apr 2024",
-    name: "Hack Chula",
-    location: "ตึก... คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
-    joined: 6969,
-    imageUrl: "/hackChula.jpg",
-    tags: ["Tech", "Competition", "Hackathon"],
-  },
-  {
-    date: "fri. 12 Apr 2024",
-    name: "Hack Chula",
-    location: "ตึก... คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
-    joined: 6969,
-    imageUrl: "/hackChula.jpg",
-    tags: ["Tech", "Competition", "Hackathon"],
-  },
-  {
-    date: "fri. 12 Apr 2024",
-    name: "Hack Chula",
-    location: "ตึก... คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
-    joined: 6969,
-    imageUrl: "/hackChula.jpg",
-    tags: ["Tech", "Competition", "Hackathon"],
-  },
-  {
-    date: "fri. 12 Apr 2024",
-    name: "Hack Chula",
-    location: "ตึก... คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
-    joined: 6969,
-    imageUrl: "/hackChula.jpg",
-    tags: ["Tech", "Competition", "Hackathon"],
-  },
-];
+const BigCard = ({
+  data,
+  isShowLike,
+  isShowPaticipants,
+  isShowTags,
+  isShowActer,
+}: {
+  data: Event;
+  isShowLike: Boolean;
+  isShowPaticipants: Boolean;
+  isShowTags: Boolean;
+  isShowActer: Boolean;
+}) => {
+  console.log(data);
+  const [liked, setLiked] = useState(false);
 
-const BigCard = () => {
+  const handleLike = (event: React.MouseEvent<HTMLButtonElement>) => {
+    // if (liked) {
+    // do something
+    // } else {
+    //  dosomething
+    // }
+    setLiked((prev) => !prev);
+  };
+
   return (
-    <div>
-      {mockData.map((data) => (
-        <div className="w-full">
-          <div className="mb-2 font-bold text-xl">{data.date}</div>
-          {/* card */}
-          <div className="flex rounded-2xl overflow-hidden bg-white gap-2 shadow-lg hover:shadow-xl">
-            <Image
-              src={data.imageUrl}
-              width={200}
-              height={200}
-              alt="event-image"
-              className="w-fit"
-            />
-            <div className="p-8 flex flex-col gap-2 text-white bg-black bg-opacity-90 w-full">
-              <div className="font-bold text-red-400">{data.date}</div>
-              <div className="text-xl font-bold">{data.name}</div>
-              <div className="text-sm">{data.location}</div>
-              <div className="flex gap-2 items-center text-sm">
-                <Icon icon="fluent:people-community-48-filled" width={30} />
-                {data.joined} คน
-              </div>
-              <div className="flex gap-2">
-                #tag
-                {data.tags.map((tag) => (
-                  <div className="bg-green-400 px-4 rounded-full text-xs font-bold flex items-center">
-                    {tag}
-                  </div>
-                ))}
-              </div>
-              <Link href={"/events/:id"}>
-                <Button
-                  className="bg-red-400 text-white font-bold text-md rounded-lg w-fit px-10 mt-4 hover:bg-red-200"
-                  variant="contained"
-                >
-                  view detail
-                </Button>
-              </Link>
+    <div className="flex rounded-2xl overflow-hidden bg-white gap-2 shadow-lg hover:shadow-xl max-w-[800px]">
+      {/* event image */}
+      <div className="relative w-full">
+        <Image src={data.image} fill alt="event-image" />
+      </div>
+
+      <div className="p-8 flex flex-col gap-2 text-white bg-black bg-opacity-90 w-full">
+        {/* date */}
+        <div className="font-bold text-red-400">
+          {new Date(data.eventDate).toDateString()}
+        </div>
+
+        {/* event name */}
+        <div className="text-xl font-bold">{data.title}</div>
+
+        {/* event location */}
+        <div className="text-sm">ตึก 100 ปีชั้น 3...</div>
+
+        {/* number of actee */}
+        {isShowPaticipants && (
+          <div className="flex gap-2 items-center text-sm">
+            <Icon icon="fluent:people-community-48-filled" width={30} />
+            {Math.random() * 10000} คน
+          </div>
+        )}
+
+        {/* event tag */}
+        {isShowTags && (
+          <div className="flex gap-2">
+            #tag
+            <div className="bg-green-400 px-4 rounded-full text-xs font-bold flex items-center">
+              Tech
             </div>
           </div>
+        )}
+
+        {/* view detail button */}
+        <div className="flex gap-4 items-center mt-4">
+          <Link href={"/events/:id"}>
+            <Button
+              className="bg-red-400 text-white font-bold text-md rounded-lg w-fit px-10  hover:bg-red-200"
+              variant="contained"
+            >
+              view detail
+            </Button>
+          </Link>
+
+          {/* like button */}
+          {isShowLike && (
+            <button onClick={handleLike} className="hover:brightness-90">
+              <Icon
+                icon={`fa-${liked ? "solid" : "refular"}:heart`}
+                className=" text-red-400 text-2xl pt-0.5"
+              />
+            </button>
+          )}
         </div>
-      ))}
+
+        {/* acter profile */}
+        {isShowActer && (
+          <div className="flex justify-end">
+            <div className="relative w-16 h-16 rounded-2xl overflow-hidden">
+              <Image src={data.image} fill alt="acter-image" />
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
