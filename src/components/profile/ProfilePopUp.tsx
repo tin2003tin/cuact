@@ -37,7 +37,7 @@ const PopUp = () => {
   const [isEdit, setIsedit] = useState(false);
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg max-w-[400px] ">
+    <div className="bg-white p-6 rounded-lg shadow-lg max-w-[400px] border">
       <div className="border rounded-lg p-4 mb-4">
         <div
           className="flex justify-between items-center border-b-2 mb-4"
