@@ -1,7 +1,6 @@
 import { Button } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { Data } from "../types";
 
 const UpCommingCard = ({ data }: { data: Data }) => {
     return (
