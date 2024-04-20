@@ -39,30 +39,34 @@ const Home = () => {
       <div className="max-w-5xl mx-auto">
         {/* interest */}
         <Header text="Your Interests" link="/home" />
-        {data?.map((event) => (
-          <EventCard
-            id={event.id.toString()}
-            date={new Date(event.eventDate).toDateString()}
-            eventName={event.title}
-            location={"ตึก 100 ปี ชั้น 3...."}
-            isLiked={Math.random() * 100 > 50}
-            hasButton
-            isJoined={false}
-          />
-        ))}
+        <div className="overflow-auto flex gap-6">
+          {data?.map((event) => (
+            <EventCard
+              id={event.id.toString()}
+              date={new Date(event.eventDate).toDateString()}
+              eventName={event.title as string}
+              location={"ตึก 100 ปี ชั้น 3...."}
+              isLiked={Math.random() * 100 > 50}
+              hasButton
+              isJoined={false}
+            />
+          ))}
+        </div>
         {/* list of card */}
         <Header text="Recommended (From your interest topics)" link="/home" />
-        {data?.map((event) => (
-          <EventCard
-            id={event.id.toString()}
-            date={new Date(event.eventDate).toDateString()}
-            eventName={event.title}
-            location={"ตึก 100 ปี ชั้น 3...."}
-            isLiked={Math.random() * 100 > 50}
-            hasButton
-            isJoined={false}
-          />
-        ))}
+        <div className="overflow-auto flex gap-6">
+          {data?.map((event) => (
+            <EventCard
+              id={event.id.toString()}
+              date={new Date(event.eventDate).toDateString()}
+              eventName={event.title as string}
+              location={"ตึก 100 ปี ชั้น 3...."}
+              isLiked={Math.random() * 100 > 50}
+              hasButton
+              isJoined={false}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -72,7 +76,7 @@ export default Home;
 
 const Header = ({ text, link }: { text: string; link: string }) => {
   return (
-    <div className="flex justify-between items-center text-xl max-w-5xl mx-auto mt-8">
+    <div className="flex justify-between items-center text-xl max-w-5xl mx-auto my-8">
       <div>{text}</div>
       <Link href={link} className="flex items-center underline gap-2">
         view all

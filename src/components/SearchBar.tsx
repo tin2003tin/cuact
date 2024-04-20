@@ -55,7 +55,8 @@ const Tag = ({ text, isChoose }: { text: string; isChoose: Boolean }) => {
         isChoose ? "bg-green-300 text-white" : "bg-stone-400"
       } rounded-full`}
     >
-      text
+      {isChoose && <Icon icon="fluent-mdl2:check-mark" /> }
+      {text}
     </span>
   );
 };
