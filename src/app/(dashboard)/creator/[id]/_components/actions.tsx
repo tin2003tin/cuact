@@ -7,19 +7,14 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
-import { ConfirmModal } from "@/components/modals/confirm-modal";
 
 interface ActionsProps {
   disabled: boolean;
   courseId: string;
   isPublished: boolean;
-};
+}
 
-export const Actions = ({
-  disabled,
-  courseId,
-  isPublished
-}: ActionsProps) => {
+export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
   const router = useRouter();
   // const confetti = useConfettiStore();
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +29,7 @@ export const Actions = ({
       } else {
         await axios.patch(`/api/courses/${courseId}/publish`);
         toast.success("Course published");
-        // confetti.onOpen();
+
       }
 
       router.refresh();
@@ -43,8 +38,8 @@ export const Actions = ({
     } finally {
       setIsLoading(false);
     }
-  }
-  
+  };
+
   const onDelete = async () => {
     try {
       setIsLoading(true);
@@ -59,7 +54,7 @@ export const Actions = ({
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="flex items-center gap-x-2">
@@ -71,11 +66,9 @@ export const Actions = ({
       >
         {isPublished ? "Unpublish" : "Publish"}
       </Button>
-      <ConfirmModal onConfirm={onDelete}>
-        <Button size="sm" disabled={isLoading}>
-          <Trash className="h-4 w-4" />
-        </Button>
-      </ConfirmModal>
+      <Button size="sm" disabled={isLoading} onClick={onDelete}>
+        <Trash className="h-4 w-4" />
+      </Button>
     </div>
-  )
-}
+  );
+};
