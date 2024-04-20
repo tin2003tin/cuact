@@ -6,7 +6,7 @@ import { ProfileTab } from "./profile/Dropdown";
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-between px-20 py-4 items-center bg-white">
+    <nav className="flex justify-between px-20 py-4 items-center bg-white ">
       <span className="text-4xl font-bold text-pink-400">CUact</span>
       <div className="flex gap-8 items-center">
         <SearhTab />

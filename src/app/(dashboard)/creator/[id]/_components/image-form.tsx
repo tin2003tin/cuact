@@ -10,7 +10,7 @@ import { Event } from "@prisma/client";
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
-import { FileUpload } from "@/components/file-upload";
+// import { FileUpload } from "@/components/file-upload";
 
 interface ImageFormProps {
   initialData: Event;
@@ -78,14 +78,14 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
         ))}
       {isEditing && (
         <div>
-          <FileUpload
+          {/* <FileUpload
             endpoint="courseImage"
             onChange={(url) => {
               if (url) {
                 onSubmit({ imageUrl: url });
               }
             }}
-          />
+          /> */}
           <div className="text-xs text-muted-foreground mt-4">
             16:9 aspect ratio recommended
           </div>

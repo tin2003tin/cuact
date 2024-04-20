@@ -84,7 +84,7 @@ const CourseIdPage = async ({ params }: { params: { id: string } }) => {
               <IconBadge icon={LayoutDashboard} />
               <h2 className="text-xl">Customize your event</h2>
             </div>
-            <TitleForm initialData={course} courseId={String(course.id)} />
+            <TitleForm initialData={course} id={String(course.id)} />
             <DescriptionForm
               initialData={course}
               courseId={String(course.id)}

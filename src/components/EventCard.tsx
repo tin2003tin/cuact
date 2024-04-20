@@ -1,7 +1,7 @@
 "use client";
 
 import eventImage from "@/public/images/hackchula.png";
-import eventImage2 from "@/public/images/hackchula2.png";
+
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
@@ -50,7 +50,7 @@ const EventCard = ({
       <div className="flex items-center justify-center w-60 h-60 relative">
         <Image
           fill
-          src={eventImage2}
+          src={eventImage}
           alt={eventName}
           className="w-full h-full object-cover rounded-t-2xl"
         />
