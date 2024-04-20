@@ -33,7 +33,6 @@ const Home = () => {
               isShowTags={false}
               isShowActer={false}
               isShowViewDetail={true}
-              isShowJoinButton={false}
               key={id}
             />
           ))}
@@ -41,7 +40,7 @@ const Home = () => {
       </div>
       <div className="max-w-5xl mx-auto">
         {/* interest */}
-        <Header text="Your Interests" link="/home" />
+        <Header text="Your Interests" link="/interest" />
         <div className="overflow-auto flex gap-6  py-4">
           {data?.map((event, id) => (
             <EventCard data={event} hasButton={true} key={id} />

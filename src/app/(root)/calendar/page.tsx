@@ -5,8 +5,6 @@ import "./style.css";
 
 import { DateCalendar, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import Image from "next/image";
-import Link from "next/link";
 
 import "./style.css";
 import { Event } from "@prisma/client";
@@ -36,6 +34,7 @@ const Calendar = () => {
             isShowPaticipants={false}
             isShowTags
             isShowActer={false}
+            isShowViewDetail={true}
           />
         </>
       ))}

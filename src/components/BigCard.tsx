@@ -14,7 +14,6 @@ const BigCard = ({
   isShowTags,
   isShowActer,
   isShowViewDetail,
-  isShowJoinButton,
 }: {
   data: Event;
   isShowLike: Boolean;
@@ -22,7 +21,6 @@ const BigCard = ({
   isShowTags: Boolean;
   isShowActer: Boolean;
   isShowViewDetail: Boolean;
-  isShowJoinButton: Boolean;
 }) => {
   //console.log(data);
   const [liked, setLiked] = useState(false);
