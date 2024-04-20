@@ -17,19 +17,19 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/user/2/event/tag`)
+      .get(`https://cuact.vercel.app/api/user/2/event/tag`)
       .then((res) => setTagEvent(res.data));
   }, []);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/user/2/event/interesting`)
+      .get(`https://cuact.vercel.app/api/user/2/event/interesting`)
       .then((res) => setInterestEvent(res.data));
   }, []);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/event`)
+      .get(`https://cuact.vercel.app/pi/event`)
       .then((res) => setData(res.data));
   }, []);
 

@@ -11,7 +11,7 @@ const Navbar = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/user/2/profile`)
+      .get(`https://cuact.vercel.app/api/user/2/profile`)
       .then((res) => setTags((res.data as any)?.tag));
   }, []);
 

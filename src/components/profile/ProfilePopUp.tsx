@@ -67,13 +67,13 @@ const PopUp = ({
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/category")
+      .get("https://cuact.vercel.app/api/category")
       .then((res) => setTags(res.data));
   }, []);
 
   const handlePatchTag = () => {
     axios
-      .patch(`http://localhost:3000/api/user/2/event/tag/${addTagId}`)
+      .patch(`https://cuact.vercel.app/api/user/2/event/tag/${addTagId}`)
       .then(() => {
         console.log("patch success");
         const x = tags.find((t) => t.id.toString() == addTagId);
@@ -167,7 +167,7 @@ const Tag = ({
 }) => {
   const handleDeleteTag = () => {
     axios
-      .delete(`http://localhost:3000/api/user/2/event/tag/${text.id}`)
+      .delete(`https://cuact.vercel.app/api/user/2/event/tag/${text.id}`)
       .then(() => {
         console.log("delete tag succuss");
         setTag((prev) => prev.filter((tag) => tag.id != text.id));
