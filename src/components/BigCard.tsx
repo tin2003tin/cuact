@@ -13,12 +13,16 @@ const BigCard = ({
   isShowPaticipants,
   isShowTags,
   isShowActer,
+  isShowViewDetail,
+  isShowJoinButton,
 }: {
   data: Event;
   isShowLike: Boolean;
   isShowPaticipants: Boolean;
   isShowTags: Boolean;
   isShowActer: Boolean;
+  isShowViewDetail: Boolean;
+  isShowJoinButton: Boolean;
 }) => {
   //console.log(data);
   const [liked, setLiked] = useState(false);
@@ -51,7 +55,10 @@ const BigCard = ({
         </div>
 
         {/* event name */}
-        <div className="text-xl font-bold">{data.title}</div>
+        <div className="text-xl font-bold">
+          {data.name}
+          <div className="text-sm">{data.title}</div>
+        </div>
 
         {/* event location */}
         <div className="text-sm">{data.location}</div>
@@ -75,8 +82,12 @@ const BigCard = ({
         )}
 
         {/* view detail button */}
-        <div className="flex gap-4 items-center mt-4">
-          <Link href={`/events/${data.id}`}>
+        <div
+          className={
+            "flex gap-4 items-center mt-4 " + (isShowViewDetail ? "" : "hidden")
+          }
+        >
+          <Link href={`/event/${data.id}`}>
             <Button
               className="bg-red-400 text-white font-bold text-md rounded-lg w-fit px-10  hover:bg-red-200"
               variant="contained"

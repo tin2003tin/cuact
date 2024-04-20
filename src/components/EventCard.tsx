@@ -16,12 +16,8 @@ const EventCard = ({
 }) => {
   const [liked, setLiked] = useState(false);
 
-  const handleLike = (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    // if (liked) {
-    // do something
-    // } else {
-    //  dosomething
-    // }
+  const handleLike = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     e.stopPropagation();
     setLiked((prev) => !prev);
   };
@@ -77,7 +73,7 @@ const EventCard = ({
         </div>
         <div className="flex justify-center mt-2">
           {hasButton && (
-            <Link href={"/events/:id"}>
+            <Link href={`event/${data.id}`}>
               <Button
                 className="bg-red-400 text-white font-bold text-md rounded-lg w-fit px-10  hover:bg-red-200"
                 variant="contained"
