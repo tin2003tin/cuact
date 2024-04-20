@@ -47,7 +47,7 @@ const EventCard = ({
             <div>
               {liked ? (
                 <button
-                  onClick={(e) => handleLike(e)}
+                  onClick={handleLike}
                   className="hover:brightness-90"
                 >
                   <Icon
@@ -57,7 +57,7 @@ const EventCard = ({
                 </button>
               ) : (
                 <button
-                  onClick={(e) => handleLike(e)}
+                  onClick={handleLike}
                   className="hover:brightness-90"
                 >
                   <Icon
