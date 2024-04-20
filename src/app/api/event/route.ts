@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import { useSearchParams } from "react-router-dom";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
