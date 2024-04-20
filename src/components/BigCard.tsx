@@ -20,7 +20,7 @@ const BigCard = ({
   isShowTags: Boolean;
   isShowActer: Boolean;
 }) => {
-  console.log(data);
+  //console.log(data);
   const [liked, setLiked] = useState(false);
 
   const handleLike = (event: React.MouseEvent<HTMLButtonElement>) => {

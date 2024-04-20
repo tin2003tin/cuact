@@ -25,13 +25,14 @@ const Home = () => {
       <Header text="UPCOMING ACT..." link="/home" />
       <div className="bg-stone-900 p-8 w-full mt-4">
         <Carousel className="w-1/2 mx-auto" animation="slide">
-          {data?.map((event) => (
+          {data?.map((event, id) => (
             <BigCard
               data={event}
               isShowLike={false}
               isShowPaticipants={false}
               isShowTags={false}
               isShowActer={false}
+              key={id}
             />
           ))}
         </Carousel>
@@ -40,15 +41,15 @@ const Home = () => {
         {/* interest */}
         <Header text="Your Interests" link="/home" />
         <div className="overflow-auto flex gap-6  py-4">
-          {data?.map((event) => (
-            <EventCard data={event} hasButton={false} />
+          {data?.map((event, id) => (
+            <EventCard data={event} hasButton={false} key={id} />
           ))}
         </div>
         {/* list of card */}
         <Header text="Recommended (From your interest topics)" link="/home" />
         <div className="overflow-auto flex gap-6 py-4">
-          {data?.map((event) => (
-            <EventCard data={event} hasButton={false} />
+          {data?.map((event, id) => (
+            <EventCard data={event} hasButton={false} key={id} />
           ))}
         </div>
       </div>
