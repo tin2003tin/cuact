@@ -16,18 +16,16 @@ const EventCard = ({
 }) => {
   const [liked, setLiked] = useState(false);
 
-  const handleLike = (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleLike = () => {
     // if (liked) {
     // do something
     // } else {
     //  dosomething
     // }
-    e.stopPropagation();
     setLiked((prev) => !prev);
   };
 
   return (
-    <Link href={`/event/${data.id}`}>
       <div
         className={`bg-white w-60 rounded-2xl border shadow-md hover:shadow-lg transition-all ${
           hasButton ? "h-[370px]" : "h-[320px]"
@@ -77,7 +75,7 @@ const EventCard = ({
         </div>
         <div className="flex justify-center mt-2">
           {hasButton && (
-            <Link href={"/events/:id"}>
+            <Link href={`/events/${data.id}`}>
               <Button
                 className="bg-red-400 text-white font-bold text-md rounded-lg w-fit px-10  hover:bg-red-200"
                 variant="contained"
@@ -88,7 +86,6 @@ const EventCard = ({
           )}
         </div>
       </div>
-    </Link>
   );
 };
 

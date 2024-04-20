@@ -28,7 +28,7 @@ const ViewAll = ({ topic }: { topic: string }) => {
       </div>
       <div className="flex flex-wrap gap-4">
         {data?.map((event) => (
-          <EventCard data={event} />
+          <EventCard data={event} hasButton={true} />
         ))}
       </div>
     </div>

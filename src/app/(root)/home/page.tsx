@@ -42,14 +42,14 @@ const Home = () => {
         <Header text="Your Interests" link="/home" />
         <div className="overflow-auto flex gap-6  py-4">
           {data?.map((event, id) => (
-            <EventCard data={event} hasButton={false} key={id} />
+            <EventCard data={event} hasButton={true} key={id} />
           ))}
         </div>
         {/* list of card */}
         <Header text="Recommended (From your interest topics)" link="/home" />
         <div className="overflow-auto flex gap-6 py-4">
           {data?.map((event, id) => (
-            <EventCard data={event} hasButton={false} key={id} />
+            <EventCard data={event} hasButton={true} key={id} />
           ))}
         </div>
       </div>

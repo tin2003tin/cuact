@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Kanit } from "next/font/google";
 import "@/app/globals.css";
+import { Suspense } from "react";
+import Loading from "./Loading";
 
 const inter = Kanit({
   weight: "400",
@@ -19,7 +21,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + " min-h-screen"}>{children}</body>
+      <body className={inter.className + " min-h-screen"}> <Suspense fallback={<Loading />}>{children}</Suspense></body>
     </html>
   );
 }
