@@ -43,7 +43,7 @@ const Home = () => {
           <EventCard
             id={event.id.toString()}
             date={new Date(event.eventDate).toDateString()}
-            eventName={event.title}
+            eventName={event.name}
             location={"ตึก 100 ปี ชั้น 3...."}
             isLiked={Math.random() * 100 > 50}
             hasButton
@@ -56,7 +56,7 @@ const Home = () => {
           <EventCard
             id={event.id.toString()}
             date={new Date(event.eventDate).toDateString()}
-            eventName={event.title}
+            eventName={event.name}
             location={"ตึก 100 ปี ชั้น 3...."}
             isLiked={Math.random() * 100 > 50}
             hasButton
