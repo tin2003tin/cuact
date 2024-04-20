@@ -29,6 +29,7 @@ const Home = () => {
               isShowLike={false}
               isShowPaticipants={false}
               isShowTags={false}
+              isShowActer={false}
             />
           ))}
         </Carousel>
