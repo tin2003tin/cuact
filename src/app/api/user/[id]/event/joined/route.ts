@@ -14,7 +14,11 @@ export async function GET(
         id: userId,
       },
       include: {
-        attendedEvents: true,
+        attendedEvents: {
+          include: {
+            Category: true,
+          },
+        },
       },
     });
 

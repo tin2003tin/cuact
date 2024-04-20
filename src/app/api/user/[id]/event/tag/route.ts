@@ -19,7 +19,11 @@ export async function GET(
           select: {
             tag: {
               include: {
-                events: true,
+                events: {
+                  include: {
+                    Category: true,
+                  },
+                },
               },
             },
           },

@@ -16,7 +16,11 @@ export async function GET(
       select: {
         profile: {
           select: {
-            interestingEvent: true,
+            interestingEvent: {
+              include: {
+                Category: true,
+              },
+            },
           },
         },
       },
