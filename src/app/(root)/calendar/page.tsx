@@ -24,12 +24,15 @@ const Calendar = () => {
         <DateCalendar className="bg-stone-200 rounded-lg mb-8 w-full" />
       </LocalizationProvider>
       {data?.map((event) => (
-        <BigCard
-          data={event}
-          isShowLike={false}
-          isShowPaticipants={false}
-          isShowTags
-        />
+        <>
+          <h2>{(new Date(event.eventDate)).toDateString()}</h2>
+          <BigCard
+            data={event}
+            isShowLike={false}
+            isShowPaticipants={false}
+            isShowTags
+          />
+        </>
       ))}
       <div className="flex flex-col items-center gap-4 w-full"></div>
     </div>
