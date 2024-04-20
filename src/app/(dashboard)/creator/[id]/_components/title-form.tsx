@@ -8,6 +8,7 @@ import { Pencil } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { Event } from "@prisma/client";
 
 import {
   Form,
@@ -16,13 +17,12 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
 
 interface TitleFormProps {
-  initialData: {
-    title: string | undefined;
-  };
+  initialData: Event;
   id: string;
 }
 
@@ -41,7 +41,9 @@ export const TitleForm = ({ initialData, id }: TitleFormProps) => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData,
+    defaultValues: {
+      title: initialData?.title || "",
+    },
   });
 
   const { isSubmitting, isValid } = form.formState;
@@ -60,19 +62,28 @@ export const TitleForm = ({ initialData, id }: TitleFormProps) => {
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Event title
+        Event Content
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit title
+              Edit Content
             </>
           )}
         </Button>
       </div>
-      {!isEditing && <p className="text-sm mt-2">{initialData.title}</p>}
+      {!isEditing && (
+        <p
+          className={cn(
+            "text-sm mt-2",
+            !initialData.content && "text-slate-500 italic"
+          )}
+        >
+          {initialData.content || "No Content"}
+        </p>
+      )}
       {isEditing && (
         <Form {...form}>
           <form
@@ -87,7 +98,7 @@ export const TitleForm = ({ initialData, id }: TitleFormProps) => {
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Advanced web development'"
+                      placeholder="e.g. 'This course is about...'"
                       {...field}
                     />
                   </FormControl>

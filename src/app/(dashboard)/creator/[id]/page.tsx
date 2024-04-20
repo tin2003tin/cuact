@@ -15,7 +15,7 @@ import { TitleForm } from "./_components/title-form";
 import { NameForm } from "./_components/name-form";
 import { ContentForm } from "./_components/content-form";
 import { ImageForm } from "./_components/image-form";
-import { CategoryForm } from "./_components/category-form";
+// import { CategoryForm } from "./_components/category-form";
 // import { PriceForm } from "./_components/price-form";
 import { AttachmentForm } from "./_components/attachment-form";
 // import { ChaptersForm } from "./_components/chapters-form";
@@ -95,14 +95,14 @@ const CourseIdPage = async ({ params }: { params: { id: string } }) => {
             <TitleForm initialData={event} id={String(event.id)} />
             <ContentForm initialData={event} id={String(event.id)} />
             <ImageForm initialData={event} id={String(event.id)} />
-            <CategoryForm
+            {/* <CategoryForm
               initialData={event}
               id={String(event.id)}
               options={categories.map((category: { name: any; id: any }) => ({
                 label: category.name,
                 value: category.id,
               }))}
-            />
+            /> */}
           </div>
           <div className="space-y-6">
             <div>

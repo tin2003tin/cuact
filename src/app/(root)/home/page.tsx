@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import { Event } from "@prisma/client";
+import SearchBar from "@/components/SearchBar";
 
 const Home = () => {
   const [data, setData] = useState<Event[] | null>([]);
@@ -20,6 +21,7 @@ const Home = () => {
 
   return (
     <div className="h-full text-lg">
+      <SearchBar />
       <Header text="UPCOMING ACT..." link="/home" />
       <div className="bg-stone-900 p-8 w-full mt-4">
         <Carousel className="w-1/2 mx-auto" animation="slide">
@@ -41,7 +43,7 @@ const Home = () => {
           <EventCard
             id={event.id.toString()}
             date={new Date(event.eventDate).toDateString()}
-            eventName={event.title}
+            eventName={event.name}
             location={"ตึก 100 ปี ชั้น 3...."}
             isLiked={Math.random() * 100 > 50}
             hasButton
@@ -54,7 +56,7 @@ const Home = () => {
           <EventCard
             id={event.id.toString()}
             date={new Date(event.eventDate).toDateString()}
-            eventName={event.title}
+            eventName={event.name}
             location={"ตึก 100 ปี ชั้น 3...."}
             isLiked={Math.random() * 100 > 50}
             hasButton
