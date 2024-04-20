@@ -12,11 +12,13 @@ const BigCard = ({
   isShowLike,
   isShowPaticipants,
   isShowTags,
+  isShowActer,
 }: {
   data: Event;
   isShowLike: Boolean;
   isShowPaticipants: Boolean;
   isShowTags: Boolean;
+  isShowActer: Boolean;
 }) => {
   console.log(data);
   const [liked, setLiked] = useState(false);
@@ -74,11 +76,13 @@ const BigCard = ({
             </button>
           )}
         </div>
-        <div className="flex justify-end">
-          <div className="relative w-16 h-16 rounded-2xl overflow-hidden">
-            <Image src={data.image} fill alt="event-image" />
+        {isShowActer && (
+          <div className="flex justify-end">
+            <div className="relative w-16 h-16 rounded-2xl overflow-hidden">
+              <Image src={data.image} fill alt="event-image" />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
